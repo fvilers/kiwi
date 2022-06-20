@@ -33,7 +33,7 @@ Bullet lists nested within numbered list:
 
 A [link](https://www.dev-one.com).
 
-![Image](kiwi-5600.prev.jpg "icon")
+![A sliced green kiwi](kiwi-5600.prev.jpg "Kiwi")
 
 > Markdown uses email-style
 > characters for blockquoting.
