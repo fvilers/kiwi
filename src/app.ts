@@ -1,3 +1,4 @@
+import compression from "compression";
 import express from "express";
 import logger from "morgan";
 import path from "node:path";
@@ -8,6 +9,7 @@ import { notFound } from "./middlewares/not-found";
 
 export const app = express();
 
+app.use(compression());
 app.use(logger("dev"));
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(mapUrlToLocalFile());
