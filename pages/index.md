@@ -1,14 +1,14 @@
 ---
-title: "Home of Kiwi"
+title: "Kiwi"
 ---
 
-# Home of Kiwi
+Heading
+=======
 
-# Heading
+Sub-heading
+-----------
 
-## Sub-heading
-
-# Alternative heading
+# Alternative heading #
 
 Paragraphs are separated
 by a blank line.
@@ -25,15 +25,15 @@ Horizontal rule:
 Bullet lists nested within numbered list:
 
 1. fruits
-   - apple
-   - banana
+   * apple
+   * banana
 2. vegetables
    - carrot
    - broccoli
 
 A [link](https://www.dev-one.com).
 
-![A sliced green kiwi](kiwi-5600.prev.jpg "Kiwi")
+![A sliced green kiwi](kiwi-5600.prev.jpg "kiwi")
 
 > Markdown uses email-style
 > characters for blockquoting.
