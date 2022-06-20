@@ -4,16 +4,9 @@ import { constants } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-// TODO: this could be a configuration setting
-const DEFAULT_PATH = "pages";
-
-export function mapUrlToLocalFile() {
+export function mapUrlToLocalFile(root: string) {
   return async function (req: Request, res: Response, next: NextFunction) {
-    const localFile = path.join(
-      process.cwd(),
-      DEFAULT_PATH,
-      mapToLocal(req.path)
-    );
+    const localFile = path.join(root, mapToLocal(req.path));
     const fileExists = await exists(localFile);
 
     if (!fileExists) {
