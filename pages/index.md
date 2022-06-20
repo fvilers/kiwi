@@ -1,5 +1,6 @@
 ---
-title: "Kiwi"
+layout: normal
+title: Kiwi
 ---
 
 Heading

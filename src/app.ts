@@ -15,6 +15,6 @@ app.use(helmet());
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(mapUrlToLocalFile(path.join(__dirname, "..", "pages")));
-app.use(markdown());
+app.use(markdown(path.join(__dirname, "..", "layouts")));
 app.use("*", notFound());
 app.use(errorHandler());

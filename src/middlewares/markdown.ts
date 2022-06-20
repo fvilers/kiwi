@@ -1,28 +1,36 @@
 import { NextFunction, Request, Response } from "express";
 import { marked } from "marked";
 import fs from "node:fs/promises";
+import path from "node:path";
 import { loadFront } from "yaml-front-matter";
 
-export function markdown() {
+export function markdown(layoutPath: string) {
   return async function (req: Request, res: Response, next: NextFunction) {
     const buffer = await fs.readFile(req.url);
     const content = buffer.toString();
     const front = loadFront(content);
+    let layout = "#body#";
 
-    // TODO: this could be a template
-    const html = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${front.title}</title>
-  </head>
-  <body>
-    ${marked.parse(front.__content)}
-  </body>
-</html>`;
+    try {
+      layout = await getLayout(layoutPath, front.layout);
+    } catch (e) {
+      next(e);
+      return;
+    }
+
+    const html = layout
+      .replace("#title#", front.title)
+      .replace("#body#", marked.parse(front.__content));
 
     res.status(200).send(html);
   };
+}
+
+async function getLayout(
+  layoutPath: string,
+  layoutName: string = "normal"
+): Promise<string> {
+  const buffer = await fs.readFile(path.join(layoutPath, layoutName + ".html"));
+
+  return buffer.toString();
 }
